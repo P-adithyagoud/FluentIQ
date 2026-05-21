@@ -5,7 +5,17 @@
 
 import { Auth } from './auth.js';
 
-const BASE_URL = `http://${window.location.hostname}:5000`;
+// If running locally, connect to local Flask server. If running on Vercel, connect to live Render server.
+const LOCAL_BACKEND = `http://${window.location.hostname}:5000`;
+const PRODUCTION_BACKEND = 'https://fluentiq-backend.onrender.com'; // REPLACE THIS WITH YOUR LIVE RENDER/RAILWAY BACKEND URL ONCE DEPLOYED
+
+const isLocalhost = 
+    window.location.hostname === 'localhost' || 
+    window.location.hostname === '127.0.0.1' || 
+    window.location.hostname.startsWith('192.168.') || 
+    window.location.hostname.startsWith('10.');
+
+const BASE_URL = isLocalhost ? LOCAL_BACKEND : PRODUCTION_BACKEND;
 
 class ApiService {
     /**
