@@ -5,7 +5,7 @@
 
 import { Auth } from './auth.js';
 
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = `http://${window.location.hostname}:5000`;
 
 class ApiService {
     /**
