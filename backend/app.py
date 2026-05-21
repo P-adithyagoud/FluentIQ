@@ -11,9 +11,26 @@ from backend.routes.student import student_bp
 from backend.routes.faculty import faculty_bp
 from backend.utils.helpers import success_response, error_response
 
+class PrefixMiddleware(object):
+    """WSGI middleware to strip a URL prefix from requests before processing in Flask"""
+    def __init__(self, app, prefix=''):
+        self.app = app
+        self.prefix = prefix
+
+    def __call__(self, environ, start_response):
+        path_info = environ.get('PATH_INFO', '')
+        if path_info.startswith(self.prefix):
+            environ['PATH_INFO'] = path_info[len(self.prefix):]
+            environ['SCRIPT_NAME'] = self.prefix
+        return self.app(environ, start_response)
+
 def create_app():
     """Application Factory to configure and initialize the Flask REST API"""
     app = Flask(__name__)
+    
+    # Apply URL prefix middleware for Vercel's experimentalServices routing compatibility
+    app.wsgi_app = PrefixMiddleware(app.wsgi_app, prefix='/_/backend')
+    
     app.config.from_object(Config)
     
     # Enable Cross-Origin Resource Sharing (CORS) for all routes

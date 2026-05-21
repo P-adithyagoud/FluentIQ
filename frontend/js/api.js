@@ -7,7 +7,7 @@ import { Auth } from './auth.js';
 
 // If running locally, connect to local Flask server. If running on Vercel, connect to live Render server.
 const LOCAL_BACKEND = `http://${window.location.hostname}:5000`;
-const PRODUCTION_BACKEND = ''; // Relative path for unified Vercel monorepo
+const PRODUCTION_BACKEND = '/_/backend'; // Route prefix for Vercel experimentalServices
 
 const isLocalhost = 
     window.location.hostname === 'localhost' || 
