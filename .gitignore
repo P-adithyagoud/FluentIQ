@@ -1,0 +1,20 @@
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Local databases
+backend/app.db
+backend/instance/
+*.db
+
+# Security credentials and secrets
+.env
+backend/.env
+
+# Local development files and logs
+*.log
+.system_generated/
+.gemini/

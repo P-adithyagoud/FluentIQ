@@ -1,0 +1,9 @@
+Flask==3.0.2
+Flask-JWT-Extended==4.6.0
+Flask-SQLAlchemy==3.1.1
+Flask-CORS==4.0.0
+python-dotenv==1.0.1
+bcrypt==4.1.2
+pg8000==1.31.5
+# psycopg2-binary is omitted for local SQLite testing to avoid compilation errors on newer Python runtimes.
+# Add 'psycopg2-binary==2.9.9' when deploying to production with a PostgreSQL database.
