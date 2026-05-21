@@ -2,10 +2,12 @@
   "experimentalServices": {
     "frontend": {
       "root": "frontend",
+      "entrypoint": "index.html",
       "routePrefix": "/"
     },
     "backend": {
       "root": "backend",
+      "entrypoint": "app.py",
       "routePrefix": "/_/backend"
     }
   }
