@@ -1,15 +1,11 @@
 {
-  "experimentalServices": {
-    "frontend": {
-      "root": "frontend",
-      "entrypoint": "index.html",
-      "routePrefix": "/",
-      "builder": "@vercel/static"
-    },
-    "backend": {
-      "root": "backend",
-      "entrypoint": "app.py",
-      "routePrefix": "/_/backend"
+    "experimentalServices": {
+        "frontend": {
+            "routePrefix": "/"
+        },
+        "backend": {
+            "root": "backend",
+            "routePrefix": "/_/backend"
+        }
     }
-  }
 }
