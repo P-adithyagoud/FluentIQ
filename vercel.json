@@ -1,6 +1,15 @@
 {
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index.py" },
-    { "source": "/(.*)", "destination": "/frontend/$1" }
-  ]
+  "experimentalServices": {
+    "frontend": {
+      "root": "frontend",
+      "entrypoint": "index.html",
+      "routePrefix": "/",
+      "builder": "@vercel/static"
+    },
+    "backend": {
+      "root": "backend",
+      "entrypoint": "app.py",
+      "routePrefix": "/_/backend"
+    }
+  }
 }
