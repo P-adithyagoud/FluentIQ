@@ -16,8 +16,12 @@ class Config:
     JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=30)
     
     # Database Configuration
-    raw_db_url = os.environ.get('DATABASE_URL', 'sqlite:///app.db')
-    
+    raw_db_url = os.environ.get('DATABASE_URL')
+    if not raw_db_url:
+        if os.environ.get('VERCEL') == '1':
+            raw_db_url = 'sqlite:////tmp/app.db'
+        else:
+            raw_db_url = 'sqlite:///app.db'
     # Fix older 'postgres://' schema prefix if present and map to pure-Python pg8000 driver
     if raw_db_url:
         if raw_db_url.startswith('postgres://'):

@@ -32,8 +32,8 @@ def create_app():
         static_url_path=''
     )
     
-    # Apply URL prefix middleware for Vercel's experimentalServices routing compatibility
-    app.wsgi_app = PrefixMiddleware(app.wsgi_app, prefix='/_/backend')
+    # Apply URL prefix middleware for Vercel routing compatibility
+    app.wsgi_app = PrefixMiddleware(app.wsgi_app, prefix='/api')
     
     app.config.from_object(Config)
     
