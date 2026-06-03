@@ -26,7 +26,11 @@ class PrefixMiddleware(object):
 
 def create_app():
     """Application Factory to configure and initialize the Flask REST API"""
-    app = Flask(__name__)
+    app = Flask(
+        __name__,
+        static_folder=os.path.abspath(os.path.join(os.path.dirname(__file__), '../frontend')),
+        static_url_path=''
+    )
     
     # Apply URL prefix middleware for Vercel's experimentalServices routing compatibility
     app.wsgi_app = PrefixMiddleware(app.wsgi_app, prefix='/_/backend')
@@ -63,12 +67,8 @@ def create_app():
     
     @app.route('/')
     def root():
-        """Welcome check route"""
-        return success_response({
-            "platform": "AI English Learning Platform API",
-            "version": "1.0.0",
-            "database": "Ready"
-        }, "API Gateway Running Successfully")
+        """Serve the frontend SPA client"""
+        return app.send_static_file('index.html')
         
     # Auto-database creation and seeding logic
     with app.app_context():
